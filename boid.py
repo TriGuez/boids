@@ -26,5 +26,5 @@ class boid:
     def boidMeet(self):
         pass
 
-    def boidAvoir(self):
+    def boidAvoid(self):
         pass
