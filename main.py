@@ -14,18 +14,19 @@ class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
         self.show()
 
     def toggle_menu(self) : 
+    	standard = 70
         maxWidth = 250
         enable = True
         if enable : 
         	width = self.frame_left_menu.width()
         	maxExtend = maxWidth
-        	standard = 70
+        	standard = 0
 
         	if width == 70 :
         		widthExtended = maxExtend
         	else :
         		widthExtended = standard
-        	self.animation = QpropertyAnimation(self.frame_left_menu, b"minimumWidth")
+        	self.animation = QPropertyAnimation(self.frame_left_menu, b"minimumWidth")
         	self.animation.setDuration(400)
         	self.animation.setStartValue(width)
         	self.animation.setEndValue(widthExtended)

@@ -220,7 +220,7 @@ QPushButton:hover{
            <widget class="QFrame" name="frame_top_menus">
             <property name="minimumSize">
              <size>
-              <width>70</width>
+              <width>0</width>
               <height>0</height>
              </size>
             </property>
@@ -230,62 +230,129 @@ QPushButton:hover{
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_4">
-             <property name="spacing">
-              <number>0</number>
+            <widget class="QSlider" name="slide1">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>173</y>
+               <width>70</width>
+               <height>22</height>
+              </rect>
              </property>
-             <property name="leftMargin">
-              <number>0</number>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
              </property>
-             <property name="topMargin">
-              <number>0</number>
+             <property name="maximumSize">
+              <size>
+               <width>250</width>
+               <height>16777215</height>
+              </size>
              </property>
-             <property name="rightMargin">
-              <number>0</number>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
              </property>
-             <property name="bottomMargin">
-              <number>0</number>
+            </widget>
+            <widget class="QSlider" name="slide1_2">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>368</y>
+               <width>70</width>
+               <height>22</height>
+              </rect>
              </property>
-             <item>
-              <widget class="QSlider" name="slide1">
-               <property name="maximumSize">
-                <size>
-                 <width>70</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QSlider" name="slide1_2">
-               <property name="maximumSize">
-                <size>
-                 <width>70</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QSlider" name="slide1_3">
-               <property name="maximumSize">
-                <size>
-                 <width>70</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-            </layout>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>250</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+            <widget class="QSlider" name="slide1_3">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>563</y>
+               <width>70</width>
+               <height>22</height>
+              </rect>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>250</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>150</y>
+               <width>47</width>
+               <height>13</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>Qty</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_2">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>350</y>
+               <width>47</width>
+               <height>13</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>Dist</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_3">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>540</y>
+               <width>47</width>
+               <height>13</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>Speed</string>
+             </property>
+            </widget>
            </widget>
           </item>
          </layout>
