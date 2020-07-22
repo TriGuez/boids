@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, uic, QtCore, QtOpenGL
 import sys
 from OpenGL import GL
-
+from boid import *
 
 class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
     def __init__(self):
