@@ -1,3 +1,5 @@
+from math import cos,sin
+
 ################################
 # Classe correspondant aux boids
 # Un boid possède :
@@ -27,11 +29,19 @@ class boid:
 
     # Boid se déplace
     def boidMove(self):
-        pass
+        self.nouveau_x = self.x + self.v *cos(self.a)
+        self.nouveau_y = self.x + self.v *sin(self.a)
 
-    #
+    # Attention gérer les autres dudez
     def boidMeet(self):
         pass
 
+    # Gestion des frontières : changer d'angle ?
     def boidAvoid(self):
         pass
+
+    # Pour débug
+    def boidPrint(self):
+        print("x : " + str(self.x) + " & y : " + str(self.y))
+        print(" New x : "+ str(self.nouveau_x) +"    New y :" + str(self.nouveau_y))
+        print("------------------")
