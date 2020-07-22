@@ -232,6 +232,30 @@ QPushButton:hover{
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <item>
+              <widget class="QPushButton" name="start_btn">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	
+	color: rgb(255, 255, 255);
+	border : 0px solid;
+}
+QPushButton:hover{
+	background-color: rgb(167, 167, 167);
+}
+</string>
+               </property>
+               <property name="text">
+                <string>Start</string>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QLabel" name="label">
                <property name="styleSheet">
                 <string notr="true">color: rgb(255, 255, 255);</string>
@@ -349,10 +373,7 @@ QPushButton:hover{
            <number>0</number>
           </property>
           <item>
-           <widget class="QStackedWidget" name="stackedWidget">
-            <widget class="QWidget" name="page"/>
-            <widget class="QWidget" name="page_2"/>
-           </widget>
+           <widget class="QOpenGLWidget" name="gl"/>
           </item>
          </layout>
         </widget>

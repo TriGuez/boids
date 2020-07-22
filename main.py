@@ -3,7 +3,7 @@ from PyQt5.QtCore import QPropertyAnimation
 import sys
 from OpenGL import GL
 from boid import *
-
+#Jessaie un truc
 class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
     def __init__(self):
         super(Ui, self).__init__() # Call the inherited classes __init__ method
@@ -11,6 +11,7 @@ class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
         self.setWindowTitle("ye booooids")
 
         self.Btn_Toggle.clicked.connect(self.toggle_menu)
+        self.start_btn.clicked.connect(self.start_stop)
         self.show()
 
     def toggle_menu(self) : 
@@ -30,6 +31,14 @@ class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
         	self.animation.setStartValue(width)
         	self.animation.setEndValue(widthExtended)
         	self.animation.start()
+
+    def start_stop(self) :
+    	if self.start_btn.text() == 'Start' :
+    		self.start_btn.setText("Stop")
+    		self.gl.glBegin(GL_QUADS)
+    		self.gl.glVertex2f(100,100)
+    	else :
+    		self.start_btn.setText("Start")
 
 
 app = QtWidgets.QApplication(sys.argv)
