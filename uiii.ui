@@ -81,7 +81,7 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(7, 179, 4);</string>
+          <string notr="true">alternate-background-color: rgb(77, 77, 77);</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
@@ -114,14 +114,19 @@
              </sizepolicy>
             </property>
             <property name="styleSheet">
-             <string notr="true">color : rgb(255, 255, 255);
-border : 0px solid;
-
+             <string notr="true">QPushButton {
+	
+	color: rgb(255, 255, 255);
+	border : 0px solid;
+}
+QPushButton:hover{
+	background-color: rgb(167, 167, 167);
+}
 
 </string>
             </property>
             <property name="text">
-             <string>TOGGLE</string>
+             <string>Menu</string>
             </property>
            </widget>
           </item>

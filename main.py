@@ -14,4 +14,3 @@ app = QtWidgets.QApplication(sys.argv)
 window = Ui()
 app.exec_()
 
-# Ceci est un test pour push
