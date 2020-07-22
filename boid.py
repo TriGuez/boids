@@ -4,6 +4,8 @@
 #    - une position x
 #    - une position y
 #    - Une vitesse v (qu'on considère comme constante pour l'instant)
+#    - Un angle a
+#    - nouveau_x et nouveau_y pour gérer les trucs
 #    - ...
 # Un boid peut :
 #    - boidMove() : Se déplacer
@@ -13,10 +15,15 @@
 ###############################
 class boid:
 
-    def __init__(self,x,y,v):
+    def __init__(self,x,y,v,a):
         self.x = x
         self.y = y
         self.v = v
+        self.a = a
+        self.nouveau_x = 0
+        self.nouveau_y = 0
+
+
 
     # Boid se déplace
     def boidMove(self):
