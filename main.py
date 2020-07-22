@@ -19,9 +19,9 @@ class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
         if enable : 
         	width = self.frame_left_menu.width()
         	maxExtend = maxWidth
-        	standard = 0
+        	standard = 70
 
-        	if width == 0 :
+        	if width == 70 :
         		widthExtended = maxExtend
         	else :
         		widthExtended = standard
