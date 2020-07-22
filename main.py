@@ -14,7 +14,6 @@ class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
         self.show()
 
     def toggle_menu(self) : 
-    	standard = 70
         maxWidth = 250
         enable = True
         if enable : 
@@ -22,7 +21,7 @@ class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
         	maxExtend = maxWidth
         	standard = 0
 
-        	if width == 70 :
+        	if width == 0 :
         		widthExtended = maxExtend
         	else :
         		widthExtended = standard
