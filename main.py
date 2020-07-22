@@ -8,7 +8,7 @@ class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
         super(Ui, self).__init__() # Call the inherited classes __init__ method
         uic.loadUi('uiii.ui', self) # Load the .ui file
         self.showMaximized()
-        self.setWindowTitle("Application")
+        self.setWindowTitle("ye boooooids")
 
 
 app = QtWidgets.QApplication(sys.argv)
