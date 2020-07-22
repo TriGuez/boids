@@ -11,7 +11,7 @@
 #    - boidAvoid() : Changer de trajectoire en approchant un obstacle 
 #    - ...
 ###############################
-class boid(x,y,v):
+class boid:
 
     def __init__(self,x,y,v):
         self.x = x
