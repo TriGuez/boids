@@ -13,3 +13,5 @@ class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
 app = QtWidgets.QApplication(sys.argv)
 window = Ui()
 app.exec_()
+
+# Ceci est un test pour push
