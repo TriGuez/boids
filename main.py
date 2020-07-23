@@ -1,23 +1,33 @@
-from PyQt5 import QtWidgets, uic, QtCore,  QtGui
+from PyQt5 import QtWidgets, uic, QtCore, QtGui
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QPropertyAnimation, QThread, pyqtSignal
 from PyQt5.QtGui import *
 from boid import *
 import sys, time
 from random import randint
+from math import pi
 
 class Simu(QThread) :
 	new_x=pyqtSignal(int,int)
+	
 
 	def run(self) :
+		self.flock = boid(50, 50, 1, (120 * pi /180))
 		while True :
 			self.update_pos()
 
 	def update_pos(self) :
+		
 		x=randint(0, 1130-20)
 		y=randint(0, 760-20)
 		self.new_x.emit(x,y)
 		time.sleep(.5)
+		'''
+		self.flock.boidBehave()
+		x=self.flock.get_nv_x()
+		y=self.flock.get_nv_y()
+		self.new_x.emit(x,y)
+		time.sleep(1)'''
 
 
 class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
@@ -36,9 +46,7 @@ class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
 
 
     def populate(self) :
-    	font = QtGui.QFont('White Rabbit')
-    	font.setPointSize(120)
-    	bobo=QPixmap('bobo.jpg')
+    	bobo=QPixmap('boid.png')
     	self.l = QGraphicsPixmapItem(bobo)
     	self.l.setPos(10,200)
     	
