@@ -98,3 +98,9 @@ class boid:
     
     def get_y(self):
         return self.y
+
+    def get_nv_x(self):
+        return self.get_nv_x
+
+    def get_nv_y(self):
+        return self.get_nv_y
