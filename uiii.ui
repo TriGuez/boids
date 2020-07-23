@@ -375,7 +375,7 @@ QPushButton:hover{
           <item>
            <widget class="QGraphicsView" name="graph">
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(30, 30, 47);</string>
+             <string notr="true">background-color: rgb(45, 52, 54);</string>
             </property>
             <property name="frameShape">
              <enum>QFrame::NoFrame</enum>
