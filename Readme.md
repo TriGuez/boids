@@ -24,7 +24,10 @@
                 i.update_coord() # nouveau_x <- x ...
         ```
 
-* OpenGL : Mystère et boule de Guezennec
+* Fonctionnement de l'animation' :
+	+ On utilise un QGraphicsView et un QGraphicsScene. Le QGraphicsScene contient tout les objets qu'on veut animer (boids, borat etc...)
+	+ On lance l'animation dans un QThread. Il va calculer les coordonées des boids a intervalles réguliers (définis par nous) et les envoyer aux objets créés dans le QGraphicsScene
+	+ Le QThread permet de ne pas bloquer toute l'application, et d'avoir un affichage fluide de l'animation.
 
 
 
@@ -32,5 +35,4 @@
 ```bash
 python -m pip install pyqt5
 python -m pip install pyqt5-tools
-python -m pip install PyOpenGL
 ```
