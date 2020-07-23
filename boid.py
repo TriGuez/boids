@@ -22,6 +22,7 @@ class boid:
         self.x = x
         self.y = y
         self.v = v
+        self.v_save = v
         self.a = a
         self.nouveau_x = 0
         self.nouveau_y = 0
@@ -32,7 +33,9 @@ class boid:
         self.wall_haut = 100
         self.wall_gauche = 0
         self.wall_droite = 100
-        self.bordure_safe = 5 * self.v
+        self.bordure_safe = 3 * self.v
+        self.avoided = False
+        self.cpt_avoided = 0
 
 
     def boidBehave(self):
@@ -53,25 +56,35 @@ class boid:
     # Gestion des frontières : changer d'angle ?
     def boidAvoid(self):
         if(self.x <= (self.wall_bas+self.bordure_safe) or self.x >= (self.wall_haut-self.bordure_safe) or self.y <= (self.wall_gauche+self.bordure_safe) or self.y >= (self.wall_droite-self.bordure_safe)):
-            
+            self.avoided = True
+            #correction_random = random.uniform(pi/2 - pi/8 ,pi/2 + pi/8 )
+            #self.a = self.a + correction_random
             self.a = self.a + pi / 2
 
+            self.cpt_avoided = self.cpt_avoided + 1
+            if(self.cpt_avoided >= 10):
+                self.v = self.v + 0.1
 
+        else:
+            self.avoided = False
+            self.cpt_avoided = 0
+            self.v = self.v_save
 
     # Mise à jour des x et y, et rajout de hasard dans l'orientation
     def boidUpdate(self):
         self.x = self.nouveau_x
         self.y = self.nouveau_y
         
-        
-        if(self.chmgt_angle == 20):
-            nouveau_a = (random.uniform(-pi/4,pi/4))
-            self.a = self.a + nouveau_a
-            self.chmgt_angle = 0
-        else:
-           self.chmgt_angle = self.chmgt_angle + 1
-           nouveau_a = (random.uniform(-pi/32,pi/32))
-           self.a = self.a + nouveau_a
+
+        if(self.avoided == False):
+            if(self.chmgt_angle == 20):
+                nouveau_a = (random.uniform(-pi/4,pi/4))
+                self.a = self.a + nouveau_a
+                self.chmgt_angle = 0
+            else:
+                self.chmgt_angle = self.chmgt_angle + 1
+                nouveau_a = (random.uniform(-pi/32,pi/32))
+                self.a = self.a + nouveau_a
         
 
     # Pour débug

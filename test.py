@@ -24,7 +24,9 @@ plt.plot(x, y, linewidth = 4, color = 'red',label="Wall")
 plt.xlim(-10, 110)
 plt.ylim(-10, 110)
 """
-plt.plot(B1_x,B1_y,"-->",label="Boid")
+#plt.plot(B1_x,B1_y,"-->",label="Boid")
+
+plt.plot(B1_x,B1_y,label="Boid")
 plt.legend()
 plt.grid()
 plt.show()
