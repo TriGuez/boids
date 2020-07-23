@@ -12,7 +12,7 @@ class Simu(QThread) :
 	
 
 	def run(self) :
-		self.flock = boid(500, 500, 1, (120 * pi /180))
+		self.flock = boid(600,202,1,(120 * pi /180))
 		while True :
 			self.update_pos()
 
@@ -27,7 +27,7 @@ class Simu(QThread) :
 		x=self.flock.get_x()
 		y=self.flock.get_y()
 		self.new_x.emit(x,y)
-		time.sleep(.05)
+		time.sleep(.01)
 
 
 class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
@@ -92,4 +92,4 @@ class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
 app = QtWidgets.QApplication(sys.argv)
 window = Ui()
 app.exec_()
-
+sys.exit()

@@ -30,9 +30,9 @@ class boid:
         self.chmgt_angle = 0
 
         self.wall_bas = 0
-        self.wall_haut = 100
+        self.wall_haut = 760
         self.wall_gauche = 0
-        self.wall_droite = 100
+        self.wall_droite = 1130
         self.bordure_safe = 3 * self.v
         self.avoided = False
         self.cpt_avoided = 0

@@ -10,7 +10,7 @@ B1_x = []
 B1_y = []
 
 i = 0
-while(i<100000):
+while(i<100):
     B1.boidBehave()
     B1_x.append(B1.get_x())
     B1_y.append(B1.get_y())
