@@ -373,7 +373,14 @@ QPushButton:hover{
            <number>0</number>
           </property>
           <item>
-           <widget class="QOpenGLWidget" name="gl"/>
+           <widget class="QGraphicsView" name="graph">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(30, 30, 47);</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
