@@ -32,7 +32,6 @@ class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
         self.scene = QGraphicsScene(self)
         self.graph.setScene(self.scene)
         self.scene.setSceneRect(0,0,1130,760)
-        self.populate()
         self.simul=Simu()
 
 
@@ -68,6 +67,7 @@ class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
     	self.simul.new_x.connect(self.update_pos)
     	if self.start_btn.text() == 'Start' :
     		self.start_btn.setText("Stop")
+    		self.populate()
     		self.scene.addItem(self.l)
     		self.simul.start()
 
