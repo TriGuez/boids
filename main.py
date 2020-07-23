@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets, uic, QtCore, QtOpenGL, QtGui
+from PyQt5 import QtWidgets, uic, QtCore,  QtGui
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QPropertyAnimation, QThread, pyqtSignal
 from PyQt5.QtGui import *
