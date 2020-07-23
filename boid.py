@@ -47,16 +47,17 @@ class boid:
     def boidUpdate(self):
         self.x = self.nouveau_x
         self.y = self.nouveau_y
-
-        if(self.chmgt_angle == 10):
-            nouveau_a = (random.randint(0,360) * pi / 180)
+        
+        
+        #if(self.chmgt_angle == 10):
+        nouveau_a = (random.uniform(0,2*pi))
             
-            print(str(nouveau_a))
-            self.a = self.a + nouveau_a
-            #self.a = nouveau_a
-            self.chmgt_angle = 0
-        else:
-            self.chmgt_angle = self.chmgt_angle + 1
+        print(str(nouveau_a))
+        #self.a = self.a + nouveau_a
+        self.a = nouveau_a
+        self.chmgt_angle = 0
+        #else:
+         #   self.chmgt_angle = self.chmgt_angle + 1
         
 
     # Pour débug
