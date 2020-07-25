@@ -33,10 +33,17 @@
 
 # Modules
 
+### Prerequisites
+
++ Python 3
++ pip
+
 ### For Windows environments : 
 ```bash
 python -m pip install pyqt5
 python -m pip install pyqt5-tools
+python -m pip install numpy
+python -m pip install matplotlib
 ```
 
 ### For Linux environments :
@@ -45,6 +52,8 @@ python3 -m pip install pyqt5==5.14
 sudo apt-get install python3-pyqt5 -y
 sudo apt-get install pyqt5-dev-tools
 sudo apt-get install qttools5-dev-tools -y
+pip3 install numpy
+pip3 install matplotlib
 ```
 
 # Run
