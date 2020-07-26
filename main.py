@@ -7,7 +7,7 @@ from boid import *
 import sys, time
 from random import randint
 from math import pi
-
+#test commit
 class Simu(QThread) :
 	new_positions=pyqtSignal(list)
 	
