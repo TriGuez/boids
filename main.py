@@ -9,28 +9,26 @@ from random import randint
 from math import pi
 
 class Simu(QThread) :
-	new_positions=pyqtSignal(list)
+	new_positions=pyqtSignal(int,int,int)
 	
 
 	def run(self,nb_boids) : 
 		
 		self.flock = [boid(randint(0,1130),randint(0,760),1,(120 * pi /180)) for _ in range (nb_boids)] # création de tout les boids
-		self.boids = [QGraphicsPixmapItem(QPixmap("boid.png")) for _ in range (nb_boids)] # creéation des petits cercles correspondants à chaque boid #
-		#while True :
-		#	self.update_pos()
-		for _ in range (10) :
+		
+		'''while True :
 			self.movement()
-			time.sleep(.1)
+			time.sleep(.1)'''
+		for _ in range (10) :
+			i=0
+			for k in self.flock :
+				k.boidBehave()
+				self.new_positions.emit(k.get_x(),k.get_y(),i)
+				i=i+1
+		time.sleep(.1)
 
-	def movement(self) :
-		i=0
-		for k in self.flock :
-			k.boidBehave() # on calcule les nouvelles coordonnées de chaque boid, puis on les donne aux petits cercles correspondants
-			x=k.get_x()
-			y=k.get_y()
-			self.boids[i].setPos(x,y)
-			i=i+1
-		self.new_positions.emit(self.boids) # on envoie la liste des petits cercles dans l'application
+
+
 
 
 
@@ -48,14 +46,14 @@ class Ui(QtWidgets.QMainWindow):
 		self.scene.setSceneRect(0,0,1130,760)
 		self.noboids = 100
 		self.simul=Simu()
-		self.is_populate = False
+		self.isPopulate = False
 
 
-	def populate(self,liste) : # si le flag is_populate est False, on remplit la scnène avec les petits cercles
-		for k in liste :
+	def populate(self) : # si le flag is_populate est False, on remplit la scnène avec les petits cercles
+		self.boids = [QGraphicsPixmapItem(QPixmap("boid.png")) for _ in range (self.noboids)] # creéation des petits cercles correspondants à chaque boid #
+		for k in self.boids :
 			self.scene.addItem(k)
-		self.is_populate = True
-		
+		self.isPopulate = True
 		
 		
 
@@ -88,13 +86,13 @@ class Ui(QtWidgets.QMainWindow):
 			self.start_btn.setText("Start")
 			self.simul.terminate()
 			self.scene.clear()
-			self.is_populate = False
+			self.isPopulate = False
 
-	def update_pos(self,liste) :
-		if not self.is_populate :
-			self.populate(liste) #si la scene est vide, on la rempli
+	def update_pos(self,x,y,i) :
+		if not self.isPopulate :
+			self.populate() #si la scene est vide, on la rempli
 		else :
-			self.scene.update() # si la scnene n'est pas vide, on update
+			self.boids[i].setPos(x,y)
 
 
 app = QtWidgets.QApplication(sys.argv)
