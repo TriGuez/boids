@@ -9,23 +9,16 @@ from random import randint
 from math import pi
 
 class Simu(QThread) :
-	new_positions=pyqtSignal(int,int,int)
+	new_positions=pyqtSignal(int,int)
 	
 
-	def run(self,nb_boids) : 
+	def run(self) : 
 		
-		self.flock = [boid(randint(0,1130),randint(0,760),1,(120 * pi /180)) for _ in range (nb_boids)] # création de tout les boids
-		
-		'''while True :
-			self.movement()
-			time.sleep(.1)'''
-		for _ in range (10) :
-			i=0
-			for k in self.flock :
-				k.boidBehave()
-				self.new_positions.emit(k.get_x(),k.get_y(),i)
-				i=i+1
-		time.sleep(.1)
+		self.flock = boid(randint(0,1130),randint(0,760),1,(120 * pi /180))
+		while True :
+			self.flock.boidBehave()
+			self.new_positions.emit(self.flock.get_x(),self.flock.get_y())
+			time.sleep(.0001)
 
 
 
@@ -44,7 +37,7 @@ class Ui(QtWidgets.QMainWindow):
 		self.scene = QGraphicsScene(self)
 		self.graph.setScene(self.scene)
 		self.scene.setSceneRect(0,0,1130,760)
-		self.noboids = 100
+		self.noboids = 1
 		self.simul=Simu()
 		self.isPopulate = False
 
@@ -79,7 +72,7 @@ class Ui(QtWidgets.QMainWindow):
 		self.simul.new_positions.connect(self.update_pos) # on "connecte" le signal de la liste envoyé par le thread a chaque déplacement des boids à la foncton update_pos
 		if self.start_btn.text() == 'Start' :
 			self.start_btn.setText("Stop")
-			self.simul.run(self.noboids)
+			self.simul.start()
 
 
 		else :
@@ -88,11 +81,12 @@ class Ui(QtWidgets.QMainWindow):
 			self.scene.clear()
 			self.isPopulate = False
 
-	def update_pos(self,x,y,i) :
+	def update_pos(self,x,y) :
 		if not self.isPopulate :
 			self.populate() #si la scene est vide, on la rempli
 		else :
-			self.boids[i].setPos(x,y)
+			for i in range (self.noboids) :
+				self.boids[i].setPos(x,y)
 
 
 app = QtWidgets.QApplication(sys.argv)
