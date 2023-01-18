@@ -1,6 +1,8 @@
-from math import cos,sin,pi
+from math import cos,sin,pi, sqrt
+import numpy as np
 import random
 
+'''
 ################################
 # Classe correspondant aux boids
 # Un boid possède :
@@ -103,4 +105,27 @@ class boid:
         return self.get_nv_x
 
     def get_nv_y(self):
-        return self.get_nv_y
+        return self.get_nv_y'''
+
+def UpdateBoidPos(x, y, angle, speed, distance, cohesion) :
+    x=x+ speed*np.sqrt(2) * np.cos(angle)
+    y=y+ speed*np.sqrt(2) * np.sin(angle)
+    '''
+    if x >= 1130 :
+        angle = (pi-angle)
+    if x <= 0 :
+        angle = pi-angle
+    if y >= 760 :
+        angle = (-angle)
+    if y <= 0 :
+        angle = -angle
+        '''
+    bound_x_max = np.where(x>=1130)
+    bound_x_min = np.where(x<=0)
+    bound_y_max = np.where(y>=720)
+    bound_y_min = np.where(y<=0)
+    angle[bound_x_max] = np.pi-angle[bound_x_max]
+    angle[bound_x_min] = np.pi-angle[bound_x_min]
+    angle[bound_y_max] = -angle[bound_y_max]
+    angle[bound_y_min] = -angle[bound_y_min]
+    return x,y, angle+[((random.random()-0.5)*pi/180 *10) for _ in range(np.size(angle))]

@@ -5,25 +5,46 @@ from PyQt5.QtGui import *
 from boid import *
 import sys, time
 from random import randint
-from math import pi
+import numpy as np
 
 class Simu(QThread) :
-	new_x=pyqtSignal(int,int)
 	
+	new_x=pyqtSignal(np.ndarray,np.ndarray)
+
+	def __init__(self, NoBoids, Speed, Distance, Cohesion):
+		QThread.__init__(self)
+		self.speed = Speed
+		self.noBoids = NoBoids
+		self.distance = Distance
+		self.cohes = Cohesion
+		
 
 	def run(self) :
-		self.flock = boid(randint(0,1130),randint(0,760),1,120)
+		angle = np.asarray([randint(0, 360)*pi/180 for _ in range(self.noBoids)])
+		x = np.asarray([randint(0,1130) for _ in range(self.noBoids)])
+		y = np.asarray([randint(0,760) for _ in range(self.noBoids)])
 		while True :
-			x,y=self.update_pos()
+			#for ji in range(self.noBoids) :
+			#	x[ji],y[ji], angle[ji]=UpdateBoidPos(x[ji], y[ji], angle[ji], self.speed, self.distance, self.cohes)
+			x, y, angle = UpdateBoidPos(x, y, angle, self.speed, self.distance, self.cohes)
 			self.new_x.emit(x,y)
-			time.sleep(.1)
+			time.sleep(.01)
 
-	def update_pos(self) :
-		self.flock.boidBehave()
-		x=self.flock.get_x()
-		y=self.flock.get_y()
-		return x,y
-		
+	def update_pos(self, x, y, angle, speed) :
+		x+= speed*sqrt(2) * cos(angle)
+		y+= speed*sqrt(2) * sin(angle)
+		if x >= 1130 :
+			angle = (pi-angle)
+		if x <= 0 :
+			angle = pi-angle
+		if y >= 760 :
+			angle = (-angle)
+		if y <= 0 :
+			angle = -angle
+		return x,y, angle
+	def UpdateSpeed(self,val) :
+		self.testspeed = val
+		self.FlagChangedSlider = True
 
 
 class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
@@ -34,20 +55,28 @@ class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
 
 		self.Btn_Toggle.clicked.connect(self.toggle_menu)
 		self.start_btn.clicked.connect(self.start_stop)
+		self.qty_slider.valueChanged.connect(self.update_noboids)
+		self.speed_slider.valueChanged.connect(self.update_speed)
+		self.dist_slider.valueChanged.connect(self.update_distance)
 		self.show()
 		self.scene = QGraphicsScene(self)
 		self.graph.setScene(self.scene)
 		self.scene.setSceneRect(0,0,1130,760)
-		self.noboids = 2
-		self.simul=Simu()
+		self.cohesion = 0.5
+		self.noboids = self.qty_slider.value()
+		self.simul=Simu(self.qty_slider.value(), self.speed_slider.value(), self.dist_slider.value(), self.cohesion)
+		self.simul.new_x.connect(self.update_pos)
 
 
 	def populate(self) :
 		self.circles = []
-		self.threads = []
+		self.simul = Simu(self.qty_slider.value(), self.speed_slider.value(), self.dist_slider.value(), self.cohesion)
+		self.simul.new_x.connect(self.update_pos)
 		for _ in range (self.noboids) :
 			self.circles.append(QGraphicsPixmapItem(QPixmap('boid.png')))
-			self.threads.append(Simu())
+		for ii in enumerate(self.circles) :
+			self.circles[ii[0]].setPos(randint(0,1130), randint(0,760))
+
 
 		
 
@@ -64,31 +93,57 @@ class Ui(QtWidgets.QMainWindow): #Classe de la fenetre d'application #
 			else :
 				widthExtended = standard
 			self.animation = QPropertyAnimation(self.frame_left_menu, b"minimumWidth")
-			self.animation.setDuration(400)
+			self.animation.setDuration(200)
 			self.animation.setStartValue(width)
 			self.animation.setEndValue(widthExtended)
 			self.animation.start()
 
 	def start_stop(self) :
-		#self.simul.new_x.connect(self.update_pos)
+		self.simul.new_x.connect(self.update_pos)
 		if self.start_btn.text() == 'Start' :
 			self.start_btn.setText("Stop")
 			self.populate()
 			for i in range (self.noboids) :
 				self.scene.addItem(self.circles[i])
-				self.threads[i].new_x.connect(self.update_pos)
-				self.threads[i].start()
-
-
+			self.simul.start()
+			
 		else :
 			self.start_btn.setText("Start")
 			self.scene.clear()
-			for i in range (self.noboids) :
-				self.threads[i].terminate()
+			self.simul.terminate()
+			self.simul.wait()
+			print('Proccess stoped')
 
 	def update_pos(self,x,y) :
-		for i in range (self.noboids) :
-			self.circles[i].setPos(x,y)
+		try :
+			for i in range (self.noboids) :
+				self.circles[i].setPos(x[i],y[i])
+		except :
+			self.simul.terminate()
+			self.simul.wait()
+
+	def update_noboids(self) :
+		if self.start_btn.text()=='Stop' :
+			self.start_stop()
+			self.noboids = self.qty_slider.value()
+			self.start_stop()
+		else : 
+			self.noboids = self.qty_slider.value()
+	
+	def update_speed(self) :
+		if self.start_btn.text()=='Stop' :
+			self.start_stop()
+			self.start_stop()
+		else :
+			pass
+	
+	def update_distance(self) :
+		if self.start_btn.text()=='Stop' :
+			self.start_stop()
+			self.start_stop()
+		else :
+			pass
+	
 
 
 app = QtWidgets.QApplication(sys.argv)

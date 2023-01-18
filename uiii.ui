@@ -266,7 +266,7 @@ QPushButton:hover{
               </widget>
              </item>
              <item>
-              <widget class="QSlider" name="slide1">
+              <widget class="QSlider" name="qty_slider">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
@@ -278,6 +278,15 @@ QPushButton:hover{
                  <width>250</width>
                  <height>16777215</height>
                 </size>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>200</number>
+               </property>
+               <property name="value">
+                <number>1</number>
                </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
@@ -295,7 +304,7 @@ QPushButton:hover{
               </widget>
              </item>
              <item>
-              <widget class="QSlider" name="slide1_2">
+              <widget class="QSlider" name="dist_slider">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
@@ -307,6 +316,12 @@ QPushButton:hover{
                  <width>250</width>
                  <height>16777215</height>
                 </size>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
                </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
@@ -324,7 +339,7 @@ QPushButton:hover{
               </widget>
              </item>
              <item>
-              <widget class="QSlider" name="slide1_3">
+              <widget class="QSlider" name="speed_slider">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
@@ -336,6 +351,12 @@ QPushButton:hover{
                  <width>250</width>
                  <height>16777215</height>
                 </size>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>5</number>
                </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
